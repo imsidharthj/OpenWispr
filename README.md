@@ -1,5 +1,5 @@
-# VoxType: Global Voice Dictation for Linux
-VoxType is a voice-to-text dictation tool that allows you to type in any application on your Linux desktop simply by speaking. Hold down a hotkey, say what you want to type, and release. The text will appear wherever your cursor is.
+# OpwnWispr: Global Voice Dictation for Linux
+OpenWispr is a voice-to-text dictation tool that allows you to type in any application on your Linux desktop simply by speaking. Hold down a hotkey, say what you want to type, and release. The text will appear wherever your cursor is.
 
 This tool is designed to work on modern Linux distributions using the Wayland display server (such as recent versions of Ubuntu) but is also compatible with X11.
 
