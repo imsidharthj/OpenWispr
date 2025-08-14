@@ -35,9 +35,6 @@ recording_active = False
 audio_data = []
 SAMPLE_RATE = 16000
 
-# ============================================================================
-# TYPING FUNCTIONS
-# ============================================================================
 
 def init_pydotool():
     """Initialize pydotool connection"""
@@ -91,9 +88,6 @@ def type_text(text):
     print("Error: Both pydotool and subprocess typing methods failed")
     return False
 
-# ============================================================================
-# VOICE INPUT FUNCTIONS
-# ============================================================================
 
 def find_keyboard_device():
     """Finds the first device that looks like a keyboard."""
@@ -151,12 +145,12 @@ def transcribe_input_to_text():
                                           any(trig in pressed_keys for trig in TRIGGER_KEYS)
                         
                         if is_hotkey_active and not was_recording:
-                            print("\r🔴 Recording... Release Ctrl+Alt to stop.", end='', flush=True)
+                            print("\r Recording... Release Ctrl+Alt to stop.", end='', flush=True)
                             start_recording_event.set()
                             was_recording = True
                         
                         elif not is_hotkey_active and was_recording:
-                            print("\r⏹️  Processing...", end='', flush=True)
+                            print("\r⏹ Processing...", end='', flush=True)
                             stop_recording_event.set()
                             was_recording = False
                             break
@@ -219,13 +213,10 @@ def transcribe_input_to_text():
     
     return transcribed_text if transcribed_text else None
 
-# ============================================================================
-# BACKGROUND SERVICE
-# ============================================================================
 
 def run_dictation_service():
     """Main background service loop - continuous voice dictation"""
-    print("\n🎯 Voice Dictation Service Started")
+    print("\n Voice Dictation Service Started")
     
     service_running = True
     
@@ -233,20 +224,20 @@ def run_dictation_service():
         try:
             transcribed_text = transcribe_input_to_text()
             if transcribed_text:
-                print(f"\n⌨️  Typing: '{transcribed_text[:50]}{'...' if len(transcribed_text) > 50 else ''}'")
+                print(f"\n Typing: '{transcribed_text[:50]}{'...' if len(transcribed_text) > 50 else ''}'")
                 if type_text(transcribed_text):
                     print("✓ Text typed successfully!")
                 else:
                     print("✗ Failed to type text")
             else:
-                print("\n❌ No text transcribed")
+                print("\n No text transcribed")
             print("\n🎤 Ready for next voice input...")
         except KeyboardInterrupt:
-            print("\n\n🛑 Service stopped by user")
+            print("\n\n Service stopped by user")
             service_running = False
             break
         except Exception as e:
-            print(f"\n❌ Service error: {e}")
+            print(f"\n Service error: {e}")
             time.sleep(1)
 
 def main():
@@ -254,7 +245,7 @@ def main():
     print("=== Background Voice Dictation Service ===")
     
     if not VOICE_AVAILABLE:
-        print("❌ Voice input not available. Cannot start service.")
+        print(" Voice input not available. Cannot start service.")
         sys.exit(1)
     print("✓ Voice input enabled (Ctrl+Alt to record)")
     
